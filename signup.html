@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <img src="mountain range.jpeg" alt="">
+
+    <div class="box">
+    <input type="text"id="inputfield3"placeholder="your name">
+    <input type="text"id="inputfield"placeholder="enter your e-mail">
+    <input type="text"id="inputfield2"placeholder="enter password">
+
+<button id="signupBtn">sign up</button>
+<div id="errorMsg" style="color:rgb(255, 255, 255); margin-top:10px;"></div>
+<script>
+    document.getElementById('signupBtn').onclick = function() {
+        var name = document.getElementById('inputfield3').value.trim();
+        var email = document.getElementById('inputfield').value.trim();
+        var password = document.getElementById('inputfield2').value.trim();
+        var errorMsg = document.getElementById('errorMsg');
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!name || !email || !password) {
+            errorMsg.textContent = "please fill in all fields!";
+            return;
+        }
+        if (!emailPattern.test(email)) {
+            errorMsg.textContent = "incorrect email address!";
+            return;
+        }
+        localStorage.setItem('user_' + email, JSON.stringify({name: name, password: password}));
+        localStorage.setItem('username', name); 
+        window.location.href = "home.html";
+    }
+</script>
+<p> already have account؟
+        <a href="index.html">login</a></p>
+    </div>
+</body>
+</html>
